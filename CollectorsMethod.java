@@ -14,7 +14,7 @@ public class CollectorsMethod {
                 new Transaction(1004, "GBP", 500.0),
                 new Transaction(1005, "EUR", 1000.0)
         );
-
+//
 //        toList()
 //        toSet()
 //        toMap()
