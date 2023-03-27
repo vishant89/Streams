@@ -1,7 +1,10 @@
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
 
 public class Streams2 {
     public static void main(String[] args) {
@@ -14,13 +17,13 @@ public class Streams2 {
                 new Transaction(1004, "GBP", 500.0),
                 new Transaction(1005, "EUR", 1000.0)
         );
-//        The groupingBy() method groups the transactions by their currency using the Transaction::getCurrency method reference. This results in the following intermediate map:
-
-        Map<String, List<Transaction>> result = transactions.stream().collect(Collectors.groupingBy(Transaction :: getCurrency));
-        System.out.println(result);
-        // group currency by sum
-
-
+//   Collectors.collect method
+//      1  Collecting into a List
+        List<Transaction> usdTransactions = transactions.stream().filter(t ->t.getCurrency().equals("USD")).collect(Collectors.toList());
+//        2.Collecting into set
+        Set<String> currencies = transactions.stream().map(Transaction::getCurrency).collect(Collectors.toSet());
+  //    3. Collecting into map
+        Map<String , List<Transaction>> result2  = transactions.stream().collect(Collectors.groupingBy(Transaction::getCurrency));
 
     }
 }
